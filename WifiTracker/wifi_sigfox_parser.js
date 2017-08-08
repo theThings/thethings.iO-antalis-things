@@ -79,7 +79,7 @@ function main(params, callback){
         }, body, function (err, res) {
             res = JSON.parse(res.result);
             if (err) return callback(err);
-            if (res.error) return callback(res.error.message)
+            if (res.error) return callback("Google Api Message: " + res.error.message)
             result = result.concat([
                 {
                     'key': 'geolocation',
