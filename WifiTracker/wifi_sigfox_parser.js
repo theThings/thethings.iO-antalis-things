@@ -58,7 +58,15 @@ function main(params, callback){
         return callback(null, result);
 
     } else {
-        if (GOOGLE_API_KEY == 'YOUR GOOGLE API KEY') return callback('Google Api Key not configured.');
+        if (GOOGLE_API_KEY == 'YOUR GOOGLE API KEY') {
+            result = result.concat([
+                {
+                    'key': 'GMapsErrors',
+                    'value': "Google Api Key not configured"
+                }]);
+
+            return callback(null, result);
+        }
 
         mac = stringToMac(params.data.substring(0, 12));
         mac2 = stringToMac(params.data.substring(12, 24));
@@ -79,7 +87,16 @@ function main(params, callback){
         }, body, function (err, res) {
             res = JSON.parse(res.result);
             if (err) return callback(err);
-            if (res.error) return callback("Google Api Message: " + res.error.message)
+            if (res.error) {
+                result = result.concat([
+                    {
+                        'key': 'GMapsErrors',
+                        'value': "Google Api Message: " + res.error.message
+                    }]);
+
+                return callback(null, result);
+            }
+
             result = result.concat([
                 {
                     'key': 'geolocation',
@@ -101,3 +118,4 @@ function main(params, callback){
         });
     }
 }
+
