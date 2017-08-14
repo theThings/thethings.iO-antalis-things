@@ -18,4 +18,5 @@ function main(params, callback){
 
     return callback(null, result);
   }
+  else return callback('Invalid checksum');
 }
