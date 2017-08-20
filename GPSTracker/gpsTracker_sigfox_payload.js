@@ -22,7 +22,7 @@ function main(params, callback){
     let result = [
       {
         "key": "batteryLevel",
-        "value": (0.01289 * parseInt('0x' + params.data.substring(0,2))).toFixed(2)
+        "value": ((3.4/255.0) * parseInt('0x' + params.data.substring(0,2))).toFixed(2)
       },
       {
         "key": "temperature",
