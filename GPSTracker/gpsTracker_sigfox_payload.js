@@ -16,8 +16,8 @@ function main(params, callback){
     let gpsDirection = parseInt('0x' + params.data.substring(20, 22));
     let gpsLatitude = parseInt('0x' + params.data.substring(4, 12))/ Math.pow(10, 6);
     let gpsLongitude = parseInt('0x' + params.data.substring(12, 20))/ Math.pow(10, 6);
-    let longitude = directionsLongitudeLegend[gpsDirection] * (Math.floor(gpsLongitude) + 100.0*(gpsLongitude - Math.floor(gpsLongitude)) / 60.0);
-    let latitude = directionsLatitudeLegend[gpsDirection] * (Math.floor(gpsLatitude)+ 100.0*(gpsLatitude - Math.floor(gpsLatitude)) / 60.0);
+    let latitude = directionsLongitudeLegend[gpsDirection] * (Math.floor(gpsLongitude) + 100.0*(gpsLongitude - Math.floor(gpsLongitude)) / 60.0);
+    let longitude = directionsLatitudeLegend[gpsDirection] * (Math.floor(gpsLatitude)+ 100.0*(gpsLatitude - Math.floor(gpsLatitude)) / 60.0);
 
     let result = [
       {
