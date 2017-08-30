@@ -18,11 +18,20 @@ function main(params, callback){
     let gpsLongitude = parseInt('0x' + params.data.substring(12, 20))/ Math.pow(10, 6);
     let latitude = directionsLongitudeLegend[gpsDirection] * (Math.floor(gpsLongitude) + 100.0*(gpsLongitude - Math.floor(gpsLongitude)) / 60.0);
     let longitude = directionsLatitudeLegend[gpsDirection] * (Math.floor(gpsLatitude)+ 100.0*(gpsLatitude - Math.floor(gpsLatitude)) / 60.0);
-
+    let batteryVoltage = ((3.4/255.0) * parseInt('0x' + params.data.substring(0,2))).toFixed(2);
+  
+    let minimumBatteryLevel = 0.7; // In volts
+    let percentage = batteryVoltage > 1.5 ? 100 : (((batteryVoltage-minimumBatteryLevel)/(1.5-minimumBatteryLevel))*100).toFixed(0)
+    percentage = percentage < 0 ? 0 : percentage;
+  
     let result = [
       {
         "key": "batteryLevel",
-        "value": ((3.4/255.0) * parseInt('0x' + params.data.substring(0,2))).toFixed(2)
+        "value": batteryVoltage
+      },
+      {
+        "key": "percentage",
+        "value": percentage
       },
       {
         "key": "temperature",
