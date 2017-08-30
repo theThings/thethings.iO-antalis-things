@@ -38,13 +38,23 @@ function main(params, callback){
     }
 
     if (checksum === calculatedChecksum) {
+        
+        let minimumBatteryLevel = 0.7; // In volts
+        let batteryVoltage = (parseInt(params.data.substring(2, 4), 16) * (3.4/255.0)).toFixed(2);
+        let percentage = batteryVoltage > 1.5 ? 100 : (((batteryVoltage-minimumBatteryLevel)/(1.5-minimumBatteryLevel))*100).toFixed(0)
+        percentage = percentage < 0 ? 0 : percentage;
+        
         result = [{
             "key": "temperature",
             "value": - 40.0 + parseInt('0x' + params.data.substring(4,6)) / 2.0
-        },
+            },
             {
                 "key": "batteryLevel",
-                "value": 3.4 * parseInt('0x' + params.data.substring(2,4)) / 255.0
+                "value": batteryVoltage
+            },
+            {
+                "key": "percentage",
+                "value": percentage
             },
             {
                 "key": "temperatureAlert",
