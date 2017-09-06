@@ -4,7 +4,7 @@ function main(params, callback){
   let minimumBatteryLevel = 0.7; // In volts
   
   for(let i = 1; i < 12; i++) {
-    calculatedChecksum ^= parseInt('0x', params.data.substring(i * 2, 2 * i + 2));
+    calculatedChecksum ^= parseInt('0x' + params.data.substring(i * 2, 2 * i + 2));
   }
 
   if (checksum === calculatedChecksum) {
