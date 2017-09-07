@@ -37,7 +37,7 @@ function main(params, callback){
         calculatedChecksum ^= parseInt('0x' + params.data.substring(i*2, 2*i+2));
     }
 
-    if (checksum === calculatedChecksum) {
+    if (checksum === calculatedChecksum && (parseInt('0x' + params.data.substring(12, 24)) === 0)) {
         
         let minimumBatteryLevel = 0.7; // In volts
         let batteryVoltage = (parseInt(params.data.substring(2, 4), 16) * (3.4/255.0)).toFixed(2);
