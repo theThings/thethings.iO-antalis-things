@@ -12,7 +12,7 @@ function main(params, callback){
     let percentage = batteryVoltage > 1.5 ? 100 : (((batteryVoltage-minimumBatteryLevel)/(1.5-minimumBatteryLevel))*100).toFixed(0)
     percentage = percentage < 0 ? 0 : percentage;
     
-    result = [{
+    let result = [{
       'key': 'pulsedState',
       'value': parseInt('0x' + params.data.substring(4, 6))
     },
