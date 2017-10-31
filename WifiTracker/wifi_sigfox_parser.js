@@ -150,7 +150,7 @@ function main(params, callback){
                 },
                 {
                     'key': 'wifis',
-                    'value': mac1+'-'+mac2,
+                    'value': mac+'-'+mac2,
                     'geo': {
                         'lat': res.location.lat,
                         'long': res.location.lng
