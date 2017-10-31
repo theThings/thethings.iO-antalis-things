@@ -45,21 +45,49 @@ function main(params, callback){
         percentage = percentage < 0 ? 0 : percentage;
         
         result = [{
-            "key": "temperature",
-            "value": - 40.0 + parseInt('0x' + params.data.substring(4,6)) / 2.0
+                "key": "temperature",
+                "value": - 40.0 + parseInt('0x' + params.data.substring(4,6)) / 2.0
             },
             {
                 "key": "batteryLevel",
                 "value": batteryVoltage
             },
             {
-                "key": "percentage",
+                "key": "batteryPercentage",
                 "value": percentage
             },
             {
                 "key": "temperatureAlert",
                 "value": parseInt('0x' + params.data.substring(6,8))
             },
+              {
+                key: "snr",
+                value: params.custom.snr
+              },
+              {
+                key: "time",
+                value: params.custom.time
+              },
+              {
+                key: "duplicate",
+                value: params.custom.duplicate
+              },
+              {
+                key: "station",
+                value: params.custom.station
+              },
+              {
+                key: "avgSnr",
+                value: params.custom.avgSnr
+              },
+              {
+                key: "rssi",
+                value: params.custom.rssi
+              },
+              {
+                key: "seqNumber",
+                value: params.custom.seqNumber
+              },
             {
                 "key": "movementStatus",
                 "value":parseInt('0x' + params.data.substring(8,10))
@@ -119,6 +147,14 @@ function main(params, callback){
                 {
                     'key': 'googleAccuracy',
                     'value': res.accuracy
+                },
+                {
+                    'key': 'wifis',
+                    'value': mac1+'-'+mac2,
+                    'geo': {
+                        'lat': res.location.lat,
+                        'long': res.location.lng
+                    }
                 },
                 {
                     'key': '$geo',
