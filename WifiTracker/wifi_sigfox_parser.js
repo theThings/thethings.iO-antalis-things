@@ -96,18 +96,29 @@ function main(params, callback){
         return callback(null, result);
 
     } else {
+      
+      	mac = stringToMac(params.data.substring(0, 12));
+        mac2 = stringToMac(params.data.substring(12, 24));
+
+      
         if (GOOGLE_API_KEY == 'YOUR GOOGLE API KEY') {
             result = result.concat([
                 {
                     'key': 'GMapsErrors',
                     'value': "Google Api Key not configured"
-                }]);
+                },
+            	{
+                    'key': 'wifis',
+                    'value': mac+'-'+mac2+'- no google token',
+                    'geo': {
+                        'lat': res.location.lat,
+                        'long': res.location.lng
+                    }
+                }
+            ]);
 
             return callback(null, result);
         }
-
-        mac = stringToMac(params.data.substring(0, 12));
-        mac2 = stringToMac(params.data.substring(12, 24));
 
         let body = {
             'considerIp': 'false',
@@ -164,4 +175,3 @@ function main(params, callback){
         });
     }
 }
-
