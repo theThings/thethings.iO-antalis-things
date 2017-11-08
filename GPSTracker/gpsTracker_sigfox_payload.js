@@ -26,11 +26,39 @@ function main(params, callback){
   
     let result = [
       {
+        "key": "snr",
+        "value": params.custom.snr
+      },
+      {
+        "key": "time",
+        "value": params.custom.time
+      },
+      {
+        "key": "duplicate",
+        "value": params.custom.duplicate
+      },
+      {
+        "key": "station",
+        "value": params.custom.station
+      },
+      {
+        "key": "avgSnr",
+        "value": params.custom.avgSnr
+      },
+      {
+        "key": "rssi",
+        "value": params.custom.rssi
+      },
+      {
+        "key": "seqNumber",
+        "value": params.custom.seqNumber
+      },
+      {
         "key": "batteryLevel",
         "value": batteryVoltage
       },
       {
-        "key": "percentage",
+        "key": "batteryPercentage",
         "value": percentage
       },
       {
@@ -42,8 +70,8 @@ function main(params, callback){
         "value": parseInt('0x' + params.data.substring(22, 24)) >> 4
       },
       {
-        "key": "GPS",
-        "value": 1,
+        "key": "geolocation",
+        "value": "gps",
         "geo": {
           "lat": latitude,
           "long": longitude
