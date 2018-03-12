@@ -11,7 +11,7 @@ function sendEmailTemperature(params, temperature)
           service: 'SendGrid',
           auth: {
             api_user: 'thethingsio-jmperez',
-            api_key: 'bor10eal',
+            api_key: 'PASS',
           },
         },
         {
