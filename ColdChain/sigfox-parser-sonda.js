@@ -10,14 +10,14 @@ function sendEmailTemperature(params, temperature)
         {
           service: 'SendGrid',
           auth: {
-            api_user: 'thethingsio-jmperez',
+            api_user: 'USER',
             api_key: 'PASS',
           },
         },
         {
           from: 'support@thethings.io',
           to: email1,
-          subject: 'Nevera   ' + params.deviceId + ' por encima de la temperatura ('+temperature+'ºC)',
+          subject: 'Fridge   ' + params.deviceId + ' above the temperature ('+temperature+'ºC)',
           text: 'Master, let´s dance! \n\n Always yours,\n ',
         }
     );
